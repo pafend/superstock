@@ -1,101 +1,90 @@
-import Image from "next/image";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex min-h-screen flex-col">
+      <header className="border-b">
+        <div className="container flex h-16 items-center px-4">
+          <div className="flex gap-6 md:gap-10">
+            <Link href="/" className="flex items-center space-x-2">
+              <span className="font-bold inline-block">Superstock Analysis</span>
+            </Link>
+          </div>
+          <div className="ml-auto flex items-center space-x-4">
+            <nav className="flex items-center space-x-2">
+              <Link href="/watchlists">
+                <Button variant="ghost">Watchlists</Button>
+              </Link>
+              <Link href="/screener">
+                <Button variant="ghost">Screener</Button>
+              </Link>
+              <Link href="/alerts">
+                <Button variant="ghost">Alerts</Button>
+              </Link>
+            </nav>
+          </div>
+        </div>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <main className="flex-1 container py-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Card className="p-6">
+            <h3 className="text-lg font-medium mb-2">Quick Stats</h3>
+            <div className="space-y-2">
+              <p className="text-sm">Active Watchlists: 0</p>
+              <p className="text-sm">Pending Alerts: 0</p>
+              <p className="text-sm">Tracked Stocks: 0</p>
+            </div>
+          </Card>
+
+          <Card className="p-6">
+            <h3 className="text-lg font-medium mb-2">Recent Alerts</h3>
+            <p className="text-sm text-muted-foreground">No recent alerts</p>
+          </Card>
+
+          <Card className="p-6">
+            <h3 className="text-lg font-medium mb-2">Market Overview</h3>
+            <p className="text-sm text-muted-foreground">Loading market data...</p>
+          </Card>
+
+          <Card className="p-6 md:col-span-2 lg:col-span-3">
+            <h3 className="text-lg font-medium mb-4">Getting Started</h3>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="space-y-2">
+                <h4 className="font-medium">1. Create a Watchlist</h4>
+                <p className="text-sm text-muted-foreground">
+                  Set up your first watchlist with custom criteria
+                </p>
+                <Link href="/watchlists/new">
+                  <Button size="sm">Create Watchlist</Button>
+                </Link>
+              </div>
+
+              <div className="space-y-2">
+                <h4 className="font-medium">2. Configure Alerts</h4>
+                <p className="text-sm text-muted-foreground">
+                  Set up email notifications for matching stocks
+                </p>
+                <Link href="/alerts/settings">
+                  <Button size="sm" variant="outline">Configure Alerts</Button>
+                </Link>
+              </div>
+
+              <div className="space-y-2">
+                <h4 className="font-medium">3. Screen Stocks</h4>
+                <p className="text-sm text-muted-foreground">
+                  Use the screener to find matching stocks
+                </p>
+                <Link href="/screener">
+                  <Button size="sm" variant="outline">Open Screener</Button>
+                </Link>
+              </div>
+            </div>
+          </Card>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
 }
